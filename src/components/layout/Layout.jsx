@@ -3,13 +3,14 @@ import Navbar from "./Navbar";
 
 export default function Layout() {
   return (
-    <>
-      <div className="h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
+      
       <Navbar />
-      <main className="flex-1 overflow-hidden">
+
+      <main className="flex-1 overflow-y-auto">
         <Outlet />
       </main>
+
     </div>
-    </>
   );
 }

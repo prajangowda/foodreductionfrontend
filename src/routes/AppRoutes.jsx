@@ -3,7 +3,7 @@ import Home from "../pages/Home";
 import AuthPage from "../pages/auth/AuthPage";
 import OAuthSuccess from "../pages/auth/OAuthSuccess";
 import Layout from "../components/layout/Layout";
-
+import CompleteProfile from "../pages/CompleteProfile";
 // simple protection
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -15,11 +15,12 @@ export default function AppRoutes() {
     <Routes>
 
       <Route path="/" element={<Layout />}>
+      <Route path="/home" element={<Home />} />
         <Route index element={<Home />} />
         <Route path="login" element={<AuthPage />} />
         <Route path="signup" element={<AuthPage />} />
         <Route path="oauth-success" element={<OAuthSuccess />} />
-
+        <Route path="/complete-profile" element={<CompleteProfile />} />
         <Route
           path="donor"
           element={

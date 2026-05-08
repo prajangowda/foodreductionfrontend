@@ -1,11 +1,37 @@
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 
 export default function Home() {
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  
+  // to check if token valid
+   function isTokenExpired(token) {
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      return payload.exp * 1000 < Date.now();
+    } catch {
+      return true;
+    }
+  }
+
+  useEffect(() => {
+
+    const token = localStorage.getItem("token")|| "";
+
+    if (!token || isTokenExpired(token)) {
+      localStorage.removeItem("token");
+      navigate("/login");
+    }
+
+  }, []);
+
 
   return (
     <div>
-
+       
       {/* HERO SECTION */}
       <section className="text-center py-20 bg-green-50">
         <h1 className="text-4xl font-bold mb-4">

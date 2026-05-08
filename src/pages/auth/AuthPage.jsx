@@ -32,16 +32,29 @@ export default function AuthPage() {
         });
     };
 
-    // 🔥 LOGIN
+    // 🔥 LOGIN (FIXED)
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const res = await login(form);
+
+            // handle both cases (res.data or res directly)
             const data = res?.token ? res : res.data;
 
+            console.log("LOGIN RESPONSE:", data); // 🔍 debug
+
+            // store token + user
             loginUser(data);
-            navigate("/"); // or dashboard
+
+            // ✅ FIX: use data instead of user
+            if (!data.profileCompleted) {
+                navigate("/complete-profile");
+            } else {
+                navigate("/home");
+            }
+
         } catch (err) {
+            console.error(err);
             alert("Invalid credentials");
         }
     };
@@ -54,6 +67,7 @@ export default function AuthPage() {
             alert("Signup successful");
             setIsLogin(true);
         } catch (err) {
+            console.error(err);
             alert("Signup failed");
         }
     };
@@ -70,17 +84,14 @@ export default function AuthPage() {
             {/* LEFT SIDE */}
             <div className="hidden md:flex relative h-full w-full">
 
-                {/* Background Image */}
                 <img
                     src={loginimg}
                     alt="food donation"
                     className="absolute inset-0 w-full h-full object-cover"
                 />
 
-                {/* Overlay */}
                 <div className="absolute inset-0 bg-black/30"></div>
 
-                {/* Content (LEFT ALIGNED like your design) */}
                 <div className="relative z-10 flex flex-col justify-center items-start text-white px-16 h-full">
                     <h1 className="text-5xl font-bold mb-4 leading-tight">
                         Reduce Food Waste 🍱
@@ -90,7 +101,6 @@ export default function AuthPage() {
                         Connect donors, NGOs, and volunteers to distribute surplus food efficiently.
                     </p>
                 </div>
-
             </div>
 
             {/* RIGHT SIDE */}
@@ -157,7 +167,6 @@ export default function AuthPage() {
                     </p>
 
                 </div>
-
             </div>
 
         </div>
