@@ -6,7 +6,8 @@ import { useEffect } from "react";
 export default function Home() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  
+   const role = localStorage.getItem("role");
+   
   // to check if token valid
    function isTokenExpired(token) {
     try {
@@ -20,6 +21,7 @@ export default function Home() {
   useEffect(() => {
 
     const token = localStorage.getItem("token")|| "";
+   
 
     if (!token || isTokenExpired(token)) {
       localStorage.removeItem("token");
@@ -61,7 +63,7 @@ export default function Home() {
             </>
           ) : (
             <Link
-              to="/dashboard"
+              to={`/${role}/dashboard`}
               className="px-6 py-3 bg-green-600 text-white rounded-lg"
             >
               Go to Dashboard

@@ -11,6 +11,12 @@ export default function OAuthSuccess() {
     const token = query.get("token");
     const profileCompleted = query.get("profileCompleted");
 
+    const payload = JSON.parse(atob(token.split(".")[1]));
+
+    console.log(payload);
+
+    localStorage.setItem("role",payload.role.toLowerCase() );
+
     console.log("TOKEN:", token);
     console.log("PROFILE:", profileCompleted);
 

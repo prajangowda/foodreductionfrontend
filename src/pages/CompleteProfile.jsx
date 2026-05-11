@@ -4,7 +4,7 @@ import MapPicker from "../components/MapPicker";
 import { useNavigate } from "react-router-dom";
 
 const CompleteProfile = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [role, setRole] = useState("");
 
   const [form, setForm] = useState({
@@ -55,8 +55,7 @@ const CompleteProfile = () => {
           },
         }
       );
-
-      console.log(res.data);
+      
 
       alert("Profile completed successfully!");
       navigate("/home");
@@ -74,7 +73,7 @@ const CompleteProfile = () => {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 overflow-y-auto">
-      
+
       <div className="flex justify-center px-4 py-10">
 
         <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
