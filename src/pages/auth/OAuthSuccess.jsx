@@ -15,13 +15,12 @@ export default function OAuthSuccess() {
 
     console.log(payload);
 
-    localStorage.setItem("role",payload.role.toLowerCase() );
+    sessionStorage.setItem("role",payload.role.toLowerCase() );
 
-    console.log("TOKEN:", token);
-    console.log("PROFILE:", profileCompleted);
+    
 
     if (token) {
-      localStorage.setItem("token", token);
+      sessionStorage.setItem("token", token);
 
       // 🔥 MAIN FIX
       if (profileCompleted === "true") {

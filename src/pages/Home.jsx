@@ -5,8 +5,8 @@ import { useEffect } from "react";
 
 export default function Home() {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
-   const role = localStorage.getItem("role");
+  const token = sessionStorage.getItem("token");
+   const role = sessionStorage.getItem("role");
    
   // to check if token valid
    function isTokenExpired(token) {
@@ -20,12 +20,13 @@ export default function Home() {
 
   useEffect(() => {
 
-    const token = localStorage.getItem("token")|| "";
+    const token = sessionStorage.getItem("token")|| "";
    
 
     if (!token || isTokenExpired(token)) {
-      localStorage.removeItem("token");
-      navigate("/login");
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("role");
+      navigate("/home");
     }
 
   }, []);

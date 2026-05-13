@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 
   // 🔄 Restore user on refresh
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
     if (token) {
       const decoded = parseJwt(token);
@@ -35,8 +35,9 @@ export const AuthProvider = ({ children }) => {
 
   // 🔐 Login
   const loginUser = (data) => {
-  localStorage.setItem("token", data.token);
-  console.log("token", data.token);
+  sessionStorage.setItem("token", data.token);
+
+  
   const decoded = parseJwt(data.token);
 
   if (decoded) {
@@ -49,7 +50,8 @@ export const AuthProvider = ({ children }) => {
 
   // 🚪 Logout
   const logoutUser = () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("role");
     setUser(null);
   };
 

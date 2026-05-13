@@ -40,14 +40,14 @@ export default function AuthPage() {
 
             // handle both cases (res.data or res directly)
             const data = res?.token ? res : res.data;
-
-            console.log("LOGIN RESPONSE:", data); // 🔍 debug
+            
+            // 🔍 debug
 
             // store token + user
             loginUser(data);
 
-            // ✅ FIX: use data instead of user
-            if (!data.profileCompleted) {
+            
+            if (!data.profilecompleted) {
                 navigate("/complete-profile");
             } else {
                 navigate("/home");

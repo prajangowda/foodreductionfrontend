@@ -5,6 +5,7 @@ import OAuthSuccess from "../pages/auth/OAuthSuccess";
 import Layout from "../components/layout/Layout";
 import CompleteProfile from "../pages/CompleteProfile";
 import DonorDashboard from "../pages/donor/DonorDashboard";
+import NgoDashboard from "../pages/ngo/NgoDashboard";
 // simple protection
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -23,6 +24,7 @@ export default function AppRoutes() {
         <Route path="oauth-success" element={<OAuthSuccess />} />
         <Route path="/complete-profile" element={<CompleteProfile />} />
         <Route path="/donor/dashboard" element={<DonorDashboard />} />
+         <Route path="/ngo/dashboard" element={<NgoDashboard />} />
       </Route>
 
     </Routes>

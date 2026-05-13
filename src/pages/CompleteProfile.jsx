@@ -17,7 +17,7 @@ const CompleteProfile = () => {
     contactPersonName: "",
   });
 
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   const handleChange = (e) => {
     setForm({
@@ -55,8 +55,8 @@ const CompleteProfile = () => {
           },
         }
       );
-      
-
+      sessionStorage.setItem("token", res.data.token );
+      sessionStorage.setItem("role",res.data.role.toLowerCase());
       alert("Profile completed successfully!");
       navigate("/home");
     } catch (err) {

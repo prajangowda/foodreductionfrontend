@@ -5,7 +5,7 @@ const API = "http://localhost:8080/donor";
 const getAuthHeader = () => {
   return {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
   };
 };
