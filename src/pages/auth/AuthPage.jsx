@@ -45,7 +45,7 @@ export default function AuthPage() {
 
             // store token + user
             loginUser(data);
-
+            sessionStorage.setItem("role",data.role.toLowerCase());
             
             if (!data.profilecompleted) {
                 navigate("/complete-profile");
@@ -60,17 +60,26 @@ export default function AuthPage() {
     };
 
     // 🔥 SIGNUP
-    const handleSignup = async (e) => {
-        e.preventDefault();
-        try {
-            await signup(form);
-            alert("Signup successful");
-            setIsLogin(true);
-        } catch (err) {
-            console.error(err);
-            alert("Signup failed");
-        }
-    };
+   const handleSignup = async (e) => {
+    e.preventDefault();
+
+    // Email regex validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(form.email)) {
+        alert("Please enter a valid email address");
+        return;
+    }
+
+    try {
+        await signup(form);
+        alert("Signup successful");
+        setIsLogin(true);
+    } catch (err) {
+        console.error(err);
+        alert("Signup failed");
+    }
+};
 
     // 🔥 GOOGLE LOGIN
     const handleGoogleLogin = () => {

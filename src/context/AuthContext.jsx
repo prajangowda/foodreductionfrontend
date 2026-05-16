@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
 
   
   const decoded = parseJwt(data.token);
-
+  console.log( decoded.role)
   if (decoded) {
     setUser({
       email: decoded.sub,

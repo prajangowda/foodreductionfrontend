@@ -2,11 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import MapPicker from "../components/MapPicker";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-const CompleteProfile = () => {
+  const CompleteProfile = () => {
   const navigate = useNavigate();
   const [role, setRole] = useState("");
-
+  const { loginUser } = useAuth();
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -55,6 +56,7 @@ const CompleteProfile = () => {
           },
         }
       );
+      loginUser(res.data);
       sessionStorage.setItem("token", res.data.token );
       sessionStorage.setItem("role",res.data.role.toLowerCase());
       alert("Profile completed successfully!");

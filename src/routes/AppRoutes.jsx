@@ -6,6 +6,7 @@ import Layout from "../components/layout/Layout";
 import CompleteProfile from "../pages/CompleteProfile";
 import DonorDashboard from "../pages/donor/DonorDashboard";
 import NgoDashboard from "../pages/ngo/NgoDashboard";
+import VolunteerDashboard from "../pages/volunteer/VolunteerDashboard";
 // simple protection
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -25,6 +26,7 @@ export default function AppRoutes() {
         <Route path="/complete-profile" element={<CompleteProfile />} />
         <Route path="/donor/dashboard" element={<DonorDashboard />} />
          <Route path="/ngo/dashboard" element={<NgoDashboard />} />
+         <Route path="/volunteer/dashboard" element={<VolunteerDashboard />} />
       </Route>
 
     </Routes>
